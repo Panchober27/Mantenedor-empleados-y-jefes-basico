@@ -1,14 +1,13 @@
 const express = require("express");
 const router = express.Router();
 
+// Controlador de los empleados.
+const empController = require("../controllers/empController");
+
 // Conexion a la bd.
 const pool = require("../database");
 
 // Ruta al listado de los empleados.
-router.get("/list-emp", async (req, res) => {
-  const emps = await pool.query("SELECT * FROM empleado");
-  console.log(emps);
-  res.render("empleados/list", { emps }); // Se renderiza la vista
-});
+router.get("/list-emp", empController.list);
 
 module.exports = router;
